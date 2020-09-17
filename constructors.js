@@ -51,35 +51,59 @@ function expect(target) {
 // Only add code to *THIS* section!
 //create a function to grab the current obj.
 //
-function Dog(a) {
+function Dog(obj) {
   this.status = "normal"
+  this.color = obj === undefined ? null : obj.color
+  this.hungry = obj === undefined ? false : obj.hungry || true
+  //or
+  // if (obj === undefined) {
+  //   this.hungry = true
+  // } else {
+  //   const dogHasHunger = obj.hungry === true || obj.hungry === false
+  //   this.hungry = dogHasHunger ? obj.hungry : true
+  // }
 }
+
+function Human(obj) {
+  this.cool = obj !== undefined ? obj.cool : false
+}
+
+Human.prototype.pet = function (dog) {
+  dog.stautus = "happy"
+}
+Human.prototype.feed = function (dog) {
+  dog.hungry = false
+}
+// using .prototype, you can set a global object with a particular subset
 //
+
 //create an if function to decide if the current obj has the inquired value
-if (a.hasOwnProperty("color")) {
-  this.color = this.color[0]
-}
+//   if (a.hasOwnProperty("color")) {
+//     this.color = a.color
+//   }
 
-if (a.hasOwnProperty("hungry")) {
-  this.hungry = true
-} else {
-  this.hungry = this.hungry
-}
+//   if (a.hasOwnProperty("hungry")) {
+//     this.hungry = true
+//   } else {
+//     this.hungry = this.hungry
+//   }
+// }
 
-function Human(a) {
-  this.pet = function (dog) {
-    dog.status = "happy"
-  }
-  this.feed = function (dog) {
-    dog.hungry = false
-  }
+// function Human() {
+//   this.pet = function (dog) {
+//     dog.status = "happy"
+//   }
+//   this.feed = function (dog) {
+//     dog.hungry = false
+//   }
 
-  if (a.hasOwnProperty("cool")) {
-    this.cool = a.cool
-  } else {
-    this.cool = false
-  }
-}
+//   if (a.hasOwnProperty("cool")) {
+//     this.cool = a.cool
+//   } else {
+//     this.cool = false
+//   }
+// }
+
 //mistaken starts
 //let obj = new Dog(a):nope
 //  Dog.prototype.it() {
