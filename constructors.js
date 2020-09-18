@@ -54,14 +54,13 @@ function expect(target) {
 function Dog(obj) {
   this.status = "normal"
   this.color = obj === undefined ? null : obj.color
-  this.hungry = obj === undefined ? false : obj.hungry || true
-  //or
-  // if (obj === undefined) {
-  //   this.hungry = true
-  // } else {
-  //   const dogHasHunger = obj.hungry === true || obj.hungry === false
-  //   this.hungry = dogHasHunger ? obj.hungry : true
-  // }
+  //this.hungry = obj === undefined ? true : obj.hungry || false not sure why this isn't working
+  if (obj === undefined) {
+    this.hungry = true
+  } else {
+    const dogHasHunger = obj.hungry === true || obj.hungry === false
+    this.hungry = dogHasHunger ? obj.hungry : true
+  }
 }
 
 function Human(obj) {
@@ -88,22 +87,19 @@ Human.prototype.feed = function (dog) {
 //     this.hungry = this.hungry
 //   }
 // }
-
-// function Human() {
-//   this.pet = function (dog) {
-//     dog.status = "happy"
-//   }
-//   this.feed = function (dog) {
-//     dog.hungry = false
-//   }
-
-//   if (a.hasOwnProperty("cool")) {
-//     this.cool = a.cool
-//   } else {
-//     this.cool = false
-//   }
-// }
-
+function Human() {
+  this.pet = function (dog) {
+    dog.status = "happy"
+  }
+  //   this.feed = function (dog) {
+  //     dog.hungry = false
+  //   }
+  if (Human.cool == true) {
+    this.cool = obj.cool
+  } else {
+    this.cool = false
+  }
+}
 //mistaken starts
 //let obj = new Dog(a):nope
 //  Dog.prototype.it() {
