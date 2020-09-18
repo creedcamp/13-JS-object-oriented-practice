@@ -63,15 +63,22 @@ function Dog(obj) {
   }
 }
 
-function Human(obj) {
-  this.cool = obj !== undefined ? obj.cool : false
-}
+// function Human(obj) {
+//   this.cool = obj !== undefined ? obj.cool : false
+// }
 
 Human.prototype.pet = function (dog) {
   dog.stautus = "happy"
 }
 Human.prototype.feed = function (dog) {
   dog.hungry = false
+}
+Human.prototype.cool = function (human) {
+  if (human.cool !== undefined) {
+    return human.cool === true
+  } else {
+    return false
+  }
 }
 // using .prototype, you can set a global object with a particular subset
 //
@@ -91,15 +98,14 @@ function Human() {
   this.pet = function (dog) {
     dog.status = "happy"
   }
-  //   this.feed = function (dog) {
-  //     dog.hungry = false
-  //   }
-  if (Human.cool == true) {
-    this.cool = obj.cool
+  if (Human.cool === true) {
+    this.cool = Human.cool
   } else {
     this.cool = false
   }
 }
+
+//*****help here on cool. */
 //mistaken starts
 //let obj = new Dog(a):nope
 //  Dog.prototype.it() {
