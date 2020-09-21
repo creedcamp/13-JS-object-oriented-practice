@@ -54,12 +54,11 @@ function expect(target) {
 function Dog(obj) {
   this.status = "normal"
   this.color = obj === undefined ? null : obj.color
-  //this.hungry = obj === undefined ? true : obj.hungry || false not sure why this isn't working
-  if (obj === undefined) {
+  //this.hungry = obj === undefined ? true : obj.hungry || false not sure why this isn't working/ask about turinaries?
+  if (obj === undefined || obj.hungry === undefined) {
     this.hungry = true
   } else {
-    const dogHasHunger = obj.hungry === true || obj.hungry === false
-    this.hungry = dogHasHunger ? obj.hungry : true
+    this.hungry = obj.hungry
   }
 }
 
@@ -73,48 +72,26 @@ Human.prototype.pet = function (dog) {
 Human.prototype.feed = function (dog) {
   dog.hungry = false
 }
-Human.prototype.cool = function (human) {
-  if (human.cool !== undefined) {
-    return human.cool === true
-  } else {
-    return false
-  }
-}
 // using .prototype, you can set a global object with a particular subset
 //
 
 //create an if function to decide if the current obj has the inquired value
-//   if (a.hasOwnProperty("color")) {
-//     this.color = a.color
-//   }
-
 //   if (a.hasOwnProperty("hungry")) {
 //     this.hungry = true
 //   } else {
 //     this.hungry = this.hungry
 //   }
 // }
-function Human() {
+function Human(obj) {
   this.pet = function (dog) {
     dog.status = "happy"
   }
-  if (Human.cool === true) {
-    this.cool = Human.cool
-  } else {
+  if (obj === undefined) {
     this.cool = false
+  } else {
+    this.cool = obj.cool
   }
 }
-
-//*****help here on cool. */
-//mistaken starts
-//let obj = new Dog(a):nope
-//  Dog.prototype.it() {
-//    sadie.color=
-//  }nope
-// Dog.prototype.it = function () {
-//   console.log(`should make ${this.color.a} when Mason pets her.`)
-// }
-
 // const doggy = new Dog("happy")
 
 // ????????
